@@ -171,5 +171,34 @@ public class InspectorTest {
         result = inspect.getParameters(m);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getReturnType method, of class Inspector.
+     */
+    @Test
+    public void testGetReturnType() {
+        System.out.println("getReturnType");
+        Method m = classObject.getMethods()[3];
+        Class expResult = java.lang.String<int>;
+        String expResult;
+        expResult = "int";
+        Class result = inspect.getReturnType(m);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getReturnString method, of class Inspector.
+     * Actual "functional" piece of code to be used in the
+     * Inspector. 
+     */
+    @Test
+    public void testGetReturnString() {
+        System.out.println("getReturnString");
+        Method m = classObject.getMethods()[3];
+        Class r = classObject;
+        String expResult = "int";
+        String result = inspect.getReturnString(r, m);
+        assertEquals(expResult, result);
+    }
     
 }

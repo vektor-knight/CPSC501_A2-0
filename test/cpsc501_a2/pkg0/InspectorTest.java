@@ -5,6 +5,7 @@
  */
 package cpsc501_a2.pkg0;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -192,15 +193,31 @@ public class InspectorTest {
 
     /**
      * Test of getModifiers method, of class Inspector.
+     * How do you refactor tests? There is clearly a way.
      */
     @Test
     public void testGetModifiers() {
         System.out.println("getModifiers");
         Method m = classObject.getMethods()[3];
         String expResult = "public";
-        System.out.println(expResult);
+        System.out.println(expResult); // < hints at how to refactor tests?
         String result = inspect.getModifiers(m);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getConstructors method, of class Inspector.
+     * A bit "hacky", but basically says that my wrap around
+     * "getConstructors()" from the Java reflect library
+     * has the same result as when I return a String from
+     * my implementation of the same method.
+     */
+    @org.junit.Test
+    public void testGetConstructors() {
+        System.out.println("getConstructors");
+        Constructor[] expResult = classObject.getConstructors();
+        String result = inspect.getConstructors(classObject);
+        assertEquals(Arrays.toString(expResult), result);
     }
     
 }

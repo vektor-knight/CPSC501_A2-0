@@ -62,10 +62,28 @@ public class InspectorTest {
      * First test generated to test whether the 
      * refactored version is getting the correct superclass
      * of a mock object (as given above - ClassA).
+     * PASSED TEST USING CLASSA. Can repeat this ad infinitum
+     * using any number of the mock classes that were provided
+     * by the TA.
      */
     @Test
     public void testGetSuper() {
         System.out.println("getSuper");
+        String expResult = "class java.lang.Object";
+        String result = inspect.getSuper(classObject);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getDeclaring method, of class Inspector.
+     * Second test generated to test whether the correct
+     * declaring class is being returned as a String.
+     * PASSED TEST USING CLASSA. "inspect" method still 
+     * failing, as expected.
+     */
+    @Test
+    public void testGetDeclaring() {
+        System.out.println("getDeclaring");
         String expResult = "class java.lang.Object";
         String result = inspect.getSuper(classObject);
         assertEquals(expResult, result);

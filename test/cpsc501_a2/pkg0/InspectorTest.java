@@ -6,6 +6,7 @@
 package cpsc501_a2.pkg0;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -185,6 +186,20 @@ public class InspectorTest {
         Class r = classObject;
         String expResult = "int";
         String result = inspect.getReturnString(r, m);
+        assertEquals(expResult, result);
+    }
+
+
+    /**
+     * Test of getModifiers method, of class Inspector.
+     */
+    @Test
+    public void testGetModifiers() {
+        System.out.println("getModifiers");
+        Method m = classObject.getMethods()[3];
+        String expResult = "public";
+        System.out.println(expResult);
+        String result = inspect.getModifiers(m);
         assertEquals(expResult, result);
     }
     

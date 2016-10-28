@@ -96,20 +96,30 @@ public class Inspector {
     // There might be a way to get this into one form.
     public Class[] getClassInterfaces(Class[] x) {
         // Name of the interfaces the class implements
+        Class classObject = x.getClass();
         Class[] classInterfaces = classObject.getInterfaces();
+        return classInterfaces;
         // Since the interfaces are returned in an array,
         // traverse it.
         // In this case, we are only asked for the name, although
         // it is possible to retrieve other data about the interfaec
         // after each iteration.
-        if (classInterfaces.length > 0) {
+    }
+    
+    // What I can do here instead is return the Class[] object,
+    // and then create a loop which queries the above method.
+    // This would return individual Class objects, which can 
+    // then be cast to Strings. This is what I will be testing.
+        // This would be an advanced refactoring, using:
+    /*         if (classInterfaces.length > 0) {
             System.out.println("INSPECTING THE CLASS INTERFACES");
             for (Class classInterface : classInterfaces) {
                 System.out.println("Interface: " + classInterface);
             }
             System.out.println("DONE INSPECTING THE CLASS INTERFACES");
-        }
-    }
-    
+        } 
+    */
+    // Going to save this for later, and instead test the getClassInterfaces
+    // wrapper, obtained from "extract method" refactoring.
     
 }

@@ -239,9 +239,8 @@ public class InspectorTest {
     @Test
     public void testGetConstParams() {
         System.out.println("getConstParams");
-        Constructor x = "[Ljava.lang.reflect.Constructor;@1012ddd; 
-        Inspector instance = new Inspector();
-        String expResult = "";
+        String x = "[int]"; 
+        String expResult = x;
         String result = instance.getConstParams(x);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

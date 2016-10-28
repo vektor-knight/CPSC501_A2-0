@@ -47,20 +47,16 @@ public class Inspector {
         System.out.println("INSPECTING THE DECLARING CLASS");
         // Attempted to use my wrapper method with getSimpleName().
         // Invoked getSuperclass directly. (Refactor: change method)
-        System.out.println("Its superclass is :" + classObject.getSuperclass().getSimpleName());
+        System.out.println("Its superclass is: " + classObject.getSuperclass().getSimpleName());
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
-        
-        		//System.out.println("inside inspector: "
-			//	+ obj.getClass().getSimpleName() + " (recursive = " + recursive
-			//	+ ")");
-                        /*
-		System.out.println("Name of declaring class: "
-				+ classObject.getSimpleName());
-		System.out.println("Name of immediate superclass: "
-				+ classObject.getSuperclass().getSimpleName());
-        */
+
         // Passes with recursive == false
         inspectMethods(obj, classObject);
+        inspectConstructor(obj, classObject);
+        // Reference: ObjectInspector.java by Jordan Kidney
+        // Used to mitigate programming time: used to inspect field values.
+        ObjectInspector o = new ObjectInspector();
+        o.inspect(obj, recursive);
         
         // 
 
@@ -264,6 +260,23 @@ public class Inspector {
             }
         } else {
             System.out.println("No methods exist for this class.");
+        }
+    }
+    
+    public void inspectConstructor(Object obj, Class classObject) {
+        System.out.println("INSPECTING THE CONSTRUCTOR(S) OF THE CLASS: " + classObject.getSimpleName());
+        Constructor[] c = classObject.getConstructors();
+        if (c.length > 0) {
+            for (int i = 0; i < c.length; i++) {
+                Constructor x = c[i];
+                String y = getConstParams(x);
+                String z = getConstMods(x);
+                System.out.println("The " + i + "th " + "method is: " + x.getName() +
+                        "\n\t Parameters: " + y +
+                        "\n\t Modifiers: " + z);
+            }
+        } else {
+            System.out.println("No constructors exist for this class");
         }
     }
         

@@ -88,5 +88,20 @@ public class InspectorTest {
         String result = inspect.getSuper(classObject);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getClassInterfaces method, of class Inspector.
+     */
+    @Test
+    public void testGetClassInterfaces() {
+        System.out.println("getClassInterfaces");
+        Class[] x = null;
+        Inspector instance = new Inspector();
+        Class[] expResult = null;
+        Class[] result = instance.getClassInterfaces(x);
+        assertArrayEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

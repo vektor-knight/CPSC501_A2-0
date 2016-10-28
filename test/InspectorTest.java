@@ -6,6 +6,7 @@
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.Vector;
@@ -183,31 +184,29 @@ public class InspectorTest {
 
     /**
      * Test of getConstMods method, of class Inspector.
+     * passed
      */
     @Test
     public void testGetConstMods() {
         System.out.println("getConstMods");
-        Constructor x = null;
+        Constructor x = ClassA.class.getConstructors()[0];
         Inspector instance = new Inspector();
-        String expResult = "";
+        String expResult = Modifier.toString(x.getModifiers());
         String result = instance.getConstMods(x);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of inspectMethods method, of class Inspector.
+     * passed
      */
     @Test
     public void testInspectMethods() {
         System.out.println("inspectMethods");
-        Object obj = null;
-        Class classObject = null;
+        Object obj = new ClassA();
+        Class classObject = obj.getClass();
         Inspector instance = new Inspector();
         instance.inspectMethods(obj, classObject);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

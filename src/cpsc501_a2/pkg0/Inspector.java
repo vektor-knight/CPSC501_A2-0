@@ -35,9 +35,9 @@ public class Inspector {
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
         
         // Name of the declaring superclass
-        Class declaringSuper = classObject.getSuperclass();
+            // Using refactoring of getting superclass.
         System.out.println("INSPECTING THE DECLARING CLASS");
-        System.out.println("The declaring class is: " + declaringSuper);
+        System.out.println("The declaring class is: " + getSuper(classObject));
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
         
         /*

@@ -39,8 +39,7 @@ public class Inspector {
          */
         // Name of the declaring class
         System.out.println("INSPECTING THE DECLARING CLASS");
-        String classTest = classObject.toString();
-        System.out.println("The declaring class is: " + getDeclaring(classTest));
+        System.out.println(classObject.getDeclaringClass());
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
         
         // Name of the declaring superclass
@@ -77,12 +76,18 @@ public class Inspector {
     
     // Refactoring library method for getting
     // a declaring class into constituent wrapper.
+    // First problem: wrapping a method that returns 
+    // a Class, and then casting it to String.
+    // The assignment test driver expects a symbol
+    // pointing to a Class at the base level, not a string.
+    // Testing refactor: remove method.
+    /*
     public String getDeclaring(String x) {
         String declaring;
         declaring = x.getDeclaringClass();
         String declaringReturn = declaring;
         return declaringReturn;
-    }
+    }*/
     
     // Refactoring interface library methods for
     // getting the superclass of an object.

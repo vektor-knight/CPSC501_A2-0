@@ -118,6 +118,7 @@ public class InspectorTest {
     // to the test case to basically ask whether String x was identical to String y.
     // I'm not sure why the JVM would tell me that it is unsupported to compare
     // two objects of the same type...
+    // It is worth noting that the testGetClassInterfaces() passes with this.
     private boolean assertArrayEquals(String expResult, String test) {
         return expResult == null ? test == null : expResult.equals(test);
     }

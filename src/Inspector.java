@@ -60,7 +60,14 @@ public class Inspector {
         // Reference: ObjectInspector.java by Jordan Kidney
         // Used to mitigate programming time: used to inspect field values.
         ObjectInspector o = new ObjectInspector();
-        o.inspect(obj, recursive);     
+        o.inspect(obj, recursive);
+        
+        // Complete recursive calling here, using https://github.com/stevarms/CPSC501A2/blob/master/src/Inspector.java
+        if ((classObject.getSuperclass() != null) && (classObject.getSuperclass() != Object.class)) {
+            inspectSuperClass(obj, classObject, objectsToInspect);
+        }
+        
+        if (recursive) o.inspectFieldClasses(obj, classObject, objectsToInspect, recursive);
     }
     
         // At this point, unit tests are required.
@@ -228,6 +235,20 @@ public class Inspector {
             System.out.println("No interfaces exist for this class");
         }
     }
+    
+    // To handle recursion, used method from:
+    // https://github.com/stevarms/CPSC501A2/blob/master/src/Inspector.java
+    // Makes recursive calls on superclass and fields by traversing a Vector.
+    // Incidentally, the pattern used here to achieve recursion is similar
+    // to Jordan Kidney's solution in ObjectInspector.java.
+    public void inspectSuperClass(Object obj, Class classObj, Vector objectsToInspect) {
+        System.out.println("Recursively inspecting the superclasses available: " + classObj.getSimpleName());
+        Class superClass = classObj.getSuperclass();
+        inspectMethods(obj, superClass);
+        inspectConstructor(obj, superClass);
+        ObjectInspector o = new ObjectInspector();
+        o.inspectFields(obj, superClass, new Vector());
+    } 
     
         
 }

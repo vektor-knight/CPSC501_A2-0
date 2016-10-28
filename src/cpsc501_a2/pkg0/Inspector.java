@@ -61,7 +61,12 @@ public class Inspector {
             for (Class classInterface : classInterfaces) {
                 System.out.println("Interface: " + classInterface);
             }
+            System.out.println("DONE INSPECTING THE CLASS INTERFACES");
         }
+        
+        // At this point, it was not possible to automatically
+        // refactor these into methods with return values.
+        // Began manual refactoring.
         
         // Methods the class declares
         // Exceptions
@@ -72,11 +77,16 @@ public class Inspector {
         // Type
         // Modifiers
         // Current value of each field. If recursive == false, print
-        // out the reference value.
+        // out the reference value.        
         
-        
-        
-        
+    }
+    
+    // Refactoring interface library methods for
+    // getting the superclass of an object.
+    public String getSuper(Class x) {
+        Class superClass = x.getSuperclass();
+        String superReturn = superClass.toString();
+        return superReturn;
     }
     
 }

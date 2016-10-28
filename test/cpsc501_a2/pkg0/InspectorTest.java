@@ -5,6 +5,7 @@
  */
 package cpsc501_a2.pkg0;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -121,6 +122,27 @@ public class InspectorTest {
     // It is worth noting that the testGetClassInterfaces() passes with this.
     private boolean assertArrayEquals(String expResult, String test) {
         return expResult == null ? test == null : expResult.equals(test);
+    }
+
+    /**
+     * Test of getMethods method, of class Inspector.
+     * First test anticipated that I was trying to return
+     * an array containing elements of type Method.
+     * So, the address of that array did not correspond to its
+     * String representations. In this form, I am reiterating that
+     * when the Java library method "getMethods()" is casted using an
+     * Arrays method, that it is identical to the array containing
+     * elements of type String from my implementation.
+     * As usual, inspect() does not work yet.
+     */
+    @Test
+    public void testGetMethods() {
+        System.out.println("getMethods");
+        Method[] methods;
+        methods = classObject.getMethods();
+        String expResult = Arrays.toString(methods);
+        String result = inspect.getMethods(classObject);
+        assertEquals(expResult, result);
     }
     
 }

@@ -137,17 +137,16 @@ public class InspectorTest {
 
     /**
      * Test of getModifiers method, of class Inspector.
+     * passed
      */
     @Test
     public void testGetModifiers() {
         System.out.println("getModifiers");
-        Method m = null;
+        Method m = ClassA.class.getMethods()[0];
         Inspector instance = new Inspector();
-        String expResult = "";
+        String expResult = "public";
         String result = instance.getModifiers(m);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

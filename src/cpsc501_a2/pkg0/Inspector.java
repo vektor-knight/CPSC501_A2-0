@@ -51,25 +51,7 @@ public class Inspector {
         * print it out. However, this is just a sequence of what
         * my program ought to be doing at this stage.
         */
-        
-        /*
-        Start refactoring: "extract method"
-        */
-        // Name of the interfaces the class implements
-        Class[] classInterfaces = classObject.getInterfaces();
-        // Since the interfaces are returned in an array,
-        // traverse it.
-        // In this case, we are only asked for the name, although
-        // it is possible to retrieve other data about the interfaec
-        // after each iteration.
-        if (classInterfaces.length > 0) {
-            System.out.println("INSPECTING THE CLASS INTERFACES");
-            for (Class classInterface : classInterfaces) {
-                System.out.println("Interface: " + classInterface);
-            }
-            System.out.println("DONE INSPECTING THE CLASS INTERFACES");
-        }
-        
+                
         // At this point, it was not possible to automatically
         // refactor these into methods with return values.
         // Began manual refactoring.
@@ -113,7 +95,20 @@ public class Inspector {
     // returns strings of those Class elements.
     // There might be a way to get this into one form.
     public Class[] getClassInterfaces(Class[] x) {
-        
+        // Name of the interfaces the class implements
+        Class[] classInterfaces = classObject.getInterfaces();
+        // Since the interfaces are returned in an array,
+        // traverse it.
+        // In this case, we are only asked for the name, although
+        // it is possible to retrieve other data about the interfaec
+        // after each iteration.
+        if (classInterfaces.length > 0) {
+            System.out.println("INSPECTING THE CLASS INTERFACES");
+            for (Class classInterface : classInterfaces) {
+                System.out.println("Interface: " + classInterface);
+            }
+            System.out.println("DONE INSPECTING THE CLASS INTERFACES");
+        }
     }
     
     

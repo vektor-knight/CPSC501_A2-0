@@ -51,8 +51,12 @@ public class Inspector {
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
 
         // Passes with recursive == false
+        inspectInterfaces(obj, classObject);
         inspectMethods(obj, classObject);
         inspectConstructor(obj, classObject);
+        // Since no further interface metadata is required,
+        // we satisfy the interface requirement by just using
+        // the reflective methods to get the interface names.
         // Reference: ObjectInspector.java by Jordan Kidney
         // Used to mitigate programming time: used to inspect field values.
         ObjectInspector o = new ObjectInspector();
@@ -172,8 +176,6 @@ public class Inspector {
     
     // The structure of the following void methods was referenced from:
     // https://github.com/stevarms/CPSC501A2/blob/master/src/Inspector.java
-    // My variations become apparent with the queries that result from
-    // the refactoring methods that had been applied.
     
     public void inspectMethods(Object obj, Class classObject) {
         System.out.println("INSPECTING THE METHODS OF THE CLASS: " + classObject.getDeclaringClass());
@@ -213,5 +215,19 @@ public class Inspector {
             System.out.println("No constructors exist for this class");
         }
     }
+    
+    public void inspectInterfaces(Object obj, Class classObj) {
+        System.out.println("INSPECTING THE INTERFACE(S) OF THE CLASS : " + classObj.getSimpleName());
+        Class[] inf = getClassInterfaces(classObj);
+        if (inf.length > 0) {
+            for (int i = 0; i < inf.length; i++) {
+                Class x = inf[i];
+                System.out.println("The " + i + "th " + "interface is: " + x.getName());
+            } 
+        } else {
+            System.out.println("No interfaces exist for this class");
+        }
+    }
+    
         
 }

@@ -157,5 +157,19 @@ public class InspectorTest {
         String result = inspect.getExceptions(m);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getParameters method, of class Inspector.
+     * Follows the same test structure as testGetExceptions().
+     */
+    @Test
+    public void testGetParameters() {
+        System.out.println("getParameters");
+        Method m = classObject.getMethods()[0];
+        String expResult = null;
+        String result;
+        result = inspect.getParameters(m);
+        assertEquals(expResult, result);
+    }
     
 }

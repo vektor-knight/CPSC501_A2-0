@@ -39,17 +39,33 @@ public class Inspector {
          */
         // Name of the declaring class
         System.out.println("INSPECTING THE DECLARING CLASS");
-        System.out.println(classObject.getDeclaringClass());
+        System.out.println("The declaring class is: " + classObject.getSimpleName());
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
         
         // Name of the declaring superclass
             // Using refactoring of getting superclass.
         System.out.println("INSPECTING THE DECLARING CLASS");
-        System.out.println("The declaring class is: " + getSuper(classObject));
+        // Attempted to use my wrapper method with getSimpleName().
+        // Invoked getSuperclass directly. (Refactor: change method)
+        System.out.println("Its superclass is :" + getSuper(classObject).getSimpleName());
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
         
+        		//System.out.println("inside inspector: "
+			//	+ obj.getClass().getSimpleName() + " (recursive = " + recursive
+			//	+ ")");
+                        /*
+		System.out.println("Name of declaring class: "
+				+ classObject.getSimpleName());
+		System.out.println("Name of immediate superclass: "
+				+ classObject.getSuperclass().getSimpleName());
+        */
+        // Passes with recursive == false
         inspectMethods(obj, classObject);
+        
+        // 
 
+        // Need to handle traversals and recursion now, although
+        // one of the test drivers implied that 
         /*
          * It is worth noting that at this stage, all of these
          * above snippets of code would refactor into void methods

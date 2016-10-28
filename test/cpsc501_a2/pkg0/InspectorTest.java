@@ -144,5 +144,18 @@ public class InspectorTest {
         String result = inspect.getMethods(classObject);
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getExceptions method, of class Inspector.
+     */
+    @Test
+    public void testGetExceptions() {
+        System.out.println("getExceptions");
+        Method m = classObject.getMethods()[0];
+        String expResult; // The first method in ClassA does not have any exceptions
+        expResult = null;
+        String result = inspect.getExceptions(m);
+        assertEquals(expResult, result);
+    }
     
 }

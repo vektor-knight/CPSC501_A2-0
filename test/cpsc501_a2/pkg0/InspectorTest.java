@@ -239,10 +239,9 @@ public class InspectorTest {
     @Test
     public void testGetConstParams() {
         System.out.println("getConstParams");
-        String expResult = "[int]";
-        String result = instance.getConstParams(x);
+        String expResult = "[]";
+        String result;
+        result = Arrays.toString(classObject.getConstructors()[0].getParameters());
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

@@ -5,15 +5,21 @@
  */
 package cpsc501_a2.pkg0;
 
+import java.io.PrintStream;
 import java.util.Vector;
 import java.lang.reflect.*;
 import java.util.Arrays;
+import static sun.reflect.misc.ConstructorUtil.getConstructors;
 
 /**
  *
  * @author shshunda
  */
 public class Inspector {
+    
+    public Inspector() {
+        
+    }
     /*
     Does this need a constructor? Perhaps
     some variables can be abstracted out.
@@ -43,20 +49,18 @@ public class Inspector {
         System.out.println("INSPECTING THE DECLARING CLASS");
         System.out.println("The declaring class is: " + getSuper(classObject));
         System.out.println("DONE INSPECTING THE DECLARING CLASS");
-        
+
         /*
-        * It is worth noting that at this stage, all of these
-        * above snippets of code would refactor into void methods
-        * with side-effects. I will have to declare a returning
-        * type and then make a query to that method, and THEN
-        * print it out. However, this is just a sequence of what
-        * my program ought to be doing at this stage.
-        */
-                
+         * It is worth noting that at this stage, all of these
+         * above snippets of code would refactor into void methods
+         * with side-effects. I will have to declare a returning
+         * type and then make a query to that method, and THEN
+         * print it out. However, this is just a sequence of what
+         * my program ought to be doing at this stage.
+         */
         // At this point, it was not possible to automatically
         // refactor these into methods with return values.
         // Began manual refactoring.
-        
         // Methods the class declares
         // Exceptions
         // Parameter types
@@ -95,7 +99,7 @@ public class Inspector {
     // the array, and the second will be a wrapper which
     // returns strings of those Class elements.
     // There might be a way to get this into one form.
-    public Class[] getClassInterfaces(Class[] x) {
+    public Class[] getClassInterfaces(Class x) {
         // Name of the interfaces the class implements
         Class classObject = x.getClass();
         Class[] classInterfaces = classObject.getInterfaces();
@@ -150,7 +154,7 @@ public class Inspector {
             exception = null;
         } else {
             for (Class except : excepts) {
-                exception = except.getSimpleName() + " ";
+                exception += except.getSimpleName() + " ";
             }
         }
         return exception;
@@ -166,7 +170,7 @@ public class Inspector {
             parameter = null;
         } else {
             for (Class param : params) {
-                parameter = param.getSimpleName() + " ";
+                parameter += param.getSimpleName() + " ";
             }
         }
         return parameter;
@@ -185,10 +189,66 @@ public class Inspector {
     // I think the refactoring when making
     // the query in getReturnType(..) is called
     // self encapsulate field. Not sure.
-    public String getReturnString(Class<?> r) {
+    public String getReturnString(Class<?> r, Method m) {
+        r = getReturnType(m);
         String toString = r.toString();
         return toString;
     }
-
     
+    // Get modifiers of a single method.
+    public String getModifiers(Method m) {
+        return Modifier.toString(m.getModifiers());
+    }
+
+    public String getConstructors(Class x) {
+        Constructor[] c = x.getConstructors();
+        return Arrays.toString(c);
+    }
+    
+    // Get parameter types of a single Constructor
+    public String getConstParams(Constructor x) {
+        String params = Arrays.toString(x.getParameterTypes());
+        return params;
+    }
+    
+    // Get parameter modifiers of a single Constructor.
+    public String getConstMods(Constructor x) {
+        String mods = Modifier.toString(x.getModifiers());
+        return mods;
+    }
+    
+    // Now that the "base cases" have been tested, and we know that
+    // it is possible to return basic information from introspection
+    // of a single object... we can now create void methods with side-effects
+    // which query the parsed String objects from the above methods.
+    // We are guaranteed that the side-effects will produce correct
+    // results, since unit tests were generated and hit with expected results.
+    
+    // The structure of the following void methods was referenced from:
+    // https://github.com/stevarms/CPSC501A2/blob/master/src/Inspector.java
+    // My variations become apparent with the queries that result from
+    // the refactoring methods that had been applied.
+    
+    public void inspectMethods(Object obj, Class classObject) {
+        System.out.println("INSPECTING THE METHODS OF THE CLASS: " + classObject.getDeclaringClass());
+        Method[] methods = classObject.getDeclaredMethods();
+        if (methods.length > 0) {
+            for (int i = 0; i < methods.length; i++) {
+                Method x = methods[i];
+                String y = getParameters(x);
+                String a = getReturnString(classObject, x);
+                String w = getModifiers(x);
+                String z = getExceptions(x);
+                
+                System.out.println("The " + i + "th " + "method is: " + x.getName() 
+                        + "\n\t Exception Types: " + z
+                        + "\n\t Parameters: " + y 
+                        + "\n\t Return Types: " + a
+                        + "\n\t Modifiers: " + w ); 
+            }
+        } else {
+            System.out.println("No methods exist for this class.");
+        }
+    }
+        
 }

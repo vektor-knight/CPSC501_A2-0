@@ -211,16 +211,15 @@ public class InspectorTest {
 
     /**
      * Test of inspectConstructor method, of class Inspector.
+     * passed
      */
     @Test
     public void testInspectConstructor() {
         System.out.println("inspectConstructor");
-        Object obj = null;
-        Class classObject = null;
+        Object obj = new ClassA();
+        Class classObject = obj.getClass();
         Inspector instance = new Inspector();
         instance.inspectConstructor(obj, classObject);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -229,12 +228,10 @@ public class InspectorTest {
     @Test
     public void testInspectInterfaces() {
         System.out.println("inspectInterfaces");
-        Object obj = null;
-        Class classObj = null;
+        Object obj = new ClassA();
+        Class classObj = obj.getClass();
         Inspector instance = new Inspector();
         instance.inspectInterfaces(obj, classObj);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

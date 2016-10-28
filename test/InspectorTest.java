@@ -95,6 +95,7 @@ public class InspectorTest {
 
     /**
      * Test of getExceptions method, of class Inspector.
+     * passed
      */
     @Test
     public void testGetExceptions() {
@@ -108,48 +109,30 @@ public class InspectorTest {
 
     /**
      * Test of getParameters method, of class Inspector.
+     * passed
      */
     @Test
     public void testGetParameters() {
         System.out.println("getParameters");
-        Method m = null;
+        Method m = ClassA.class.getMethods()[0];
         Inspector instance = new Inspector();
-        String expResult = "";
-        String result = instance.getParameters(m);
+        String expResult = instance.getParameters(m);
+        String result = null;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of getReturnType method, of class Inspector.
-     */
-    @Test
-    public void testGetReturnType() {
-        System.out.println("getReturnType");
-        Method m = null;
-        Inspector instance = new Inspector();
-        Class expResult = null;
-        Class result = instance.getReturnType(m);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getReturnString method, of class Inspector.
+     * passed.
      */
     @Test
     public void testGetReturnString() {
-        System.out.println("getReturnString");
-        Class r = null;
-        Method m = null;
+        System.out.println("getReturnType");
+        Method m = ClassA.class.getMethods()[0];
         Inspector instance = new Inspector();
-        String expResult = "";
-        String result = instance.getReturnString(r, m);
+        String expResult = "void";
+        String result = instance.getReturnType(m).toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

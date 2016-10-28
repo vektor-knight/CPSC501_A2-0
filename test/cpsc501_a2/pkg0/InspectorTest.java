@@ -172,19 +172,6 @@ public class InspectorTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getReturnType method, of class Inspector.
-     */
-    @Test
-    public void testGetReturnType() {
-        System.out.println("getReturnType");
-        Method m = classObject.getMethods()[3];
-        Class expResult = java.lang.String<int>;
-        String expResult;
-        expResult = "int";
-        Class result = inspect.getReturnType(m);
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of getReturnString method, of class Inspector.

@@ -219,5 +219,32 @@ public class InspectorTest {
         String result = inspect.getConstructors(classObject);
         assertEquals(Arrays.toString(expResult), result);
     }
-    
+
+/*
+    /**
+     * Test of getConstParams method, of class Inspector.
+
+    @Test
+    public void testGetConstParams() {
+        System.out.println("getConstParams");
+      //  String expResult = Arrays.toString(classObject.getConstructors()[0].getParameters());
+        String result = inspect.getConstParams();
+      //  assertEquals("[]", result);
+    } */  
+
+
+    /**
+     * Test of getConstParams method, of class Inspector.
+     */
+    @Test
+    public void testGetConstParams() {
+        System.out.println("getConstParams");
+        Constructor x = "[Ljava.lang.reflect.Constructor;@1012ddd; 
+        Inspector instance = new Inspector();
+        String expResult = "";
+        String result = instance.getConstParams(x);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 }

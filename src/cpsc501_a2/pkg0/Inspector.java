@@ -7,6 +7,7 @@ package cpsc501_a2.pkg0;
 
 import java.util.Vector;
 import java.lang.reflect.*;
+import java.util.Arrays;
 
 /**
  *
@@ -121,5 +122,73 @@ public class Inspector {
     */
     // Going to save this for later, and instead test the getClassInterfaces
     // wrapper, obtained from "extract method" refactoring.
+    
+    // After these above refactorings, I pondered whether getting the
+    // interfaces of a class would be checked as an Array, as opposed
+    // to single elements. The test driver didn't say much to this effect.
+    // Moved onto the next set of assignment specifications, and decided
+    // to start writing separate methods instead of blocks within the
+    // main inspect() method.
+    
+            // Methods the class declares
+    // In the final version, the idea is to be able to
+    // take this array containing elements of type String,
+    // and then print them one at a time, along with their constituent behaviour.
+    public String getMethods(Class x) {
+        Method[] methods = x.getMethods();
+        String castedMethods = Arrays.toString(methods);
+        return castedMethods;
+    }
+    
+    // Get exceptions of a single method. 
+    // Single method may have multiple exceptions.
+    // Return them in an array of Strings.
+    public String getExceptions(Method m) {
+        Class[] excepts = m.getExceptionTypes();
+        String exception = null;
+        if (excepts.length > 0) {
+            exception = null;
+        } else {
+            for (Class except : excepts) {
+                exception = except.getSimpleName() + " ";
+            }
+        }
+        return exception;
+    }
+    
+    // Get parameters of a single method. Follows
+    // the same structure as getExceptions(..).
+    public String getParameters(Method m) {
+        Class[] params;
+        params = m.getParameterTypes();
+        String parameter = null;
+        if (params.length > 0) {
+            parameter = null;
+        } else {
+            for (Class param : params) {
+                parameter = param.getSimpleName() + " ";
+            }
+        }
+        return parameter;
+    }
+    
+    // Get return type
+    // There is only ever one return type for
+    // a given method.
+    public Class<?> getReturnType(Method m) {
+        Class<?> ret;
+        ret = m.getReturnType();
+        return ret;
+    }
+    
+    // Helper to be used in getReturnType(..).
+    // I think the refactoring when making
+    // the query in getReturnType(..) is called
+    // self encapsulate field. Not sure.
+    public String getReturnString(Class<?> r) {
+        String toString = r.toString();
+        return toString;
+    }
+
     
 }

@@ -244,4 +244,28 @@ public class InspectorTest {
         result = Arrays.toString(classObject.getConstructors()[0].getParameters());
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getConstMods method, of class Inspector.
+     * @throws java.lang.NoSuchMethodException
+     * Springboarding from the test "testGetConstParams()", I decided
+     * to check if there was a way of getting a single object of type
+     * Constructor to test directly. It turns out, that when we are
+     * asked for the parameter types using the reflective library method
+     * getConstructor, you can actually set it to null initially.
+     * What happens here is that the result of the actual modifier
+     * and parameter types are generated dynamically at run-time, at which
+     * point the expected result and the actual result correspond to each other.
+     */
+    @Test
+    public void testGetConstMods() throws NoSuchMethodException {
+        System.out.println("getConstMods");
+        Class[] parameterTypes = null;
+        Constructor x = classObject.getConstructor(parameterTypes);
+        String expResult = "public";
+        String result = inspect.getConstMods(x);
+        assertEquals(expResult, result);
+    }
+
+
 }

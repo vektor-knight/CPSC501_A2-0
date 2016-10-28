@@ -221,31 +221,5 @@ public class InspectorTest {
         Inspector instance = new Inspector();
         instance.inspectConstructor(obj, classObject);
     }
-
-    /**
-     * Test of inspectInterfaces method, of class Inspector.
-     */
-    @Test
-    public void testInspectInterfaces() {
-        System.out.println("inspectInterfaces");
-        Object obj = new ClassA();
-        Class classObj = obj.getClass();
-        Inspector instance = new Inspector();
-        instance.inspectInterfaces(obj, classObj);
-    }
-
-    /**
-     * Test of inspectSuperClass method, of class Inspector.    
-     * Passed
-     */
-    @Test
-    public void testInspectSuperClass() {
-        System.out.println("inspectSuperClass");
-        Object obj = new ClassA();
-        Class classObj = obj.getClass();
-        Vector objectsToInspect = null;
-        Inspector instance = new Inspector();
-        instance.inspectSuperClass(obj, classObj, objectsToInspect);
-    }
     
 }
